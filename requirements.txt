@@ -1,0 +1,8 @@
+transformers
+torch
+bitsandbytes
+flamingo_pytorch
+pillow
+accelerate
+datasets
+rich
