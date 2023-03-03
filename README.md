@@ -144,17 +144,16 @@ torch.nn.init.normal_(
 I had to make some slight changes to the decoder to allow it to accept already embedded features in the forward pass. This was necessary to allow the more complex input sequence described above. The changes are visible in the following diff in line 391 of `torchscale/architecture/decoder.py`:
 
 ```diff
-+
-if kwargs.get("passed_x", None) is None:
-    x, _ = self.forward_embedding(
-        prev_output_tokens, token_embeddings, incremental_state
-    )
-else:
-    x = kwargs["passed_x"]
--
-x, _ = self.forward_embedding(
-    prev_output_tokens, token_embeddings, incremental_state
-)
++if kwargs.get("passed_x", None) is None:
++    x, _ = self.forward_embedding(
++        prev_output_tokens, token_embeddings, incremental_state
++    )
++else:
++    x = kwargs["passed_x"]
+
+-x, _ = self.forward_embedding(
+-    prev_output_tokens, token_embeddings, incremental_state
+-)
 ```
 
 ### Training
